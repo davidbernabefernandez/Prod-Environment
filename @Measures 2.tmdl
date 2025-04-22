@@ -1,0 +1,149 @@
+table @Measures
+	lineageTag: 96092219-3d52-4676-a20e-b9304f758746
+
+	measure Measure = "Create your measures here"
+		displayFolder: Folder 1
+		lineageTag: 8b2f3d1f-b5e1-4d88-9404-1576a43af69c
+
+	measure 'me CHP Power' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siCHP1_CTL_PWR_EL_KW_AV")
+		lineageTag: 43899f21-d658-49af-b031-e39bb18618a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me electricity export' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DLV1__slQ")
+		lineageTag: 146a1a82-b22f-46a8-bfe3-6822d8e8540f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me electricity import' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DRW1__slQ")
+		lineageTag: c647c6fa-bcfd-4e5e-bdd2-3d5014dba519
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me temp tank1' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM1_TMP_SCALE1")
+		lineageTag: 5650f6af-b84e-45d8-b2b8-e13540f1b1c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me temp tank2' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM2_TMP_SCALE1")
+		lineageTag: 0137c16b-bfd1-4113-a761-516f436d3ac3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_actual biogas concetration CH4' =
+			CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] IN {
+			"SPS_01_VCN_GAS_ANALYSE_0__uiCH4_IW",
+			"SPS_01_VCN_GAS_ANALYSE_1__uiCH4_IW",
+			"SPS_01_VCN_GAS_ANALYSE_2__uiCH4_IW",
+			"SPS_01_VCN_GAS_ANALYSE_4__uiCH4_IW",
+			"SPS_01_VCN_GAS_ANALYSE_5__uiCH4_IW",
+			"SPS_01_VCN_GAS_ANALYSE_6__uiCH4_IW"
+			})
+		lineageTag: 87a91be3-cb52-4dd1-a674-c4ecfcca6a55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_actual biogas concetration H2S' =
+			CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] IN {
+			"SPS_01_VCN_GAS_ANALYSE_0__uiH2S_IW",
+			"SPS_01_VCN_GAS_ANALYSE_1__uiH2S_IW",
+			"SPS_01_VCN_GAS_ANALYSE_2__uiH2S_IW",
+			"SPS_01_VCN_GAS_ANALYSE_4__uiH2S_IW",
+			"SPS_01_VCN_GAS_ANALYSE_5__uiH2S_IW",
+			"SPS_01_VCN_GAS_ANALYSE_6__uiH2S_IW"
+			})
+		lineageTag: f539c302-aa28-4a07-9542-ad514c28db61
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_actual biogas concetration O2' =
+			CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] IN {
+			"SPS_01_VCN_GAS_ANALYSE_0__uiO2_IW",
+			"SPS_01_VCN_GAS_ANALYSE_1__uiO2_IW",
+			"SPS_01_VCN_GAS_ANALYSE_2__uiO2_IW",
+			"SPS_01_VCN_GAS_ANALYSE_4__uiO2_IW",
+			"SPS_01_VCN_GAS_ANALYSE_5__uiO2_IW",
+			"SPS_01_VCN_GAS_ANALYSE_6__uiO2_IW"
+			})
+		lineageTag: 6e4ed257-e3d3-463b-a56c-eaa8d516fce5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_actual biogas production' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siCHP1_BGM1_FLW1")
+		formatString: 0
+		lineageTag: a9891eac-57b6-4527-a970-1c532dd22280
+
+	measure 'me_actual biogas production (%)' = DIVIDE([me_actual biogas production], 8000,BLANK())
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 10df11b9-ad76-40c6-b7a2-0a5cff6ef0e6
+
+	measure 'me_CHP Power (%)' = DIVIDE([me CHP Power], 9000,BLANK())
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 983b34d5-3788-4e05-a92c-c9ce5b5d5758
+
+	measure 'me_mixing time F1M1' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM1_MX1__ulCounTotal")
+		lineageTag: 38ac5659-0ee3-415d-8a93-42e1e9772d54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_mixing time F1M2' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM1_MX2__ulCounTotal")
+		lineageTag: 11f549ea-3647-4543-8391-337534819c1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_mixing time F1M3' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM1_MX3__ulCounTotal")
+		lineageTag: 44810007-700d-4cef-ae98-bc9045b3823e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_mixing time F2M1' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM2_MX1__ulCounTotal")
+		lineageTag: 40eb8446-277d-4046-92c9-88e5673b02b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_mixing time F2M2' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM2_MX2__ulCounTotal")
+		lineageTag: 3591dd92-2d12-416f-b9d0-26dcf3607fe3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me_mixing time F2M3' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_BETRH_B_FM2_MX3__ulCounTotal")
+		lineageTag: fb30771e-983d-41ca-b850-b61d90024afe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Aggregation =
+			
+			
+			SELECTEDVALUE(Parameter[Parameter Fields])
+			// SWITCH(
+			//     TRUE(),
+			//     SELECTEDVALUE(Parameter[Parameter]) = "0", "TEST",
+			//     SELECTEDVALUE(Parameter[Parameter]) = "0", "TEST" -- Valor por defecto si no hay selección
+			// )
+		lineageTag: c3970dce-2073-4fcd-8796-fe2653abab8e
+
+	measure 'me_mixing time' = AVERAGE(fact_append_data_15min[Value])
+		lineageTag: e70e6ecb-2dca-4a16-89f7-44baf14dbd28
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'me temp tank' = AVERAGE(fact_append_data_15min[Value])
+		lineageTag: 8127de88-d443-49a2-b8f8-642dad37825d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition @Measures = m
+		mode: import
+		queryGroup: Metadata
+		source =
+				let
+				    Quelle = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Spalte ""1""" = _t]),
+				    #"Geänderter Typ" = Table.TransformColumnTypes(Quelle,{{"Spalte ""1""", type text}}),
+				    #"Entfernte Spalten" = Table.RemoveColumns(#"Geänderter Typ",{"Spalte ""1"""})
+				in
+				    #"Entfernte Spalten"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
