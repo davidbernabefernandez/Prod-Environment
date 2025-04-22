@@ -5,27 +5,27 @@ table @Measures
 		displayFolder: Folder 1
 		lineageTag: 8b2f3d1f-b5e1-4d88-9404-1576a43af69c
 
-	measure 'me CHP Power' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siCHP1_CTL_PWR_EL_KW_AV")
+	measure 'me CHP Power' = CALCULATE(SUM(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siCHP1_CTL_PWR_EL_KW_AV")
 		lineageTag: 43899f21-d658-49af-b031-e39bb18618a7
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'me electricity export' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DLV1__slQ")
+	measure 'me electricity export' = CALCULATE(SUM(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DLV1__slQ")
 		lineageTag: 146a1a82-b22f-46a8-bfe3-6822d8e8540f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'me electricity import' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DRW1__slQ")
+	measure 'me electricity import' = CALCULATE(SUM(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_EMTR_EMTR_GRID1_DRW1__slQ")
 		lineageTag: c647c6fa-bcfd-4e5e-bdd2-3d5014dba519
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'me temp tank1' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM1_TMP_SCALE1")
+	measure 'me temp tank1' = CALCULATE(SUM(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM1_TMP_SCALE1")
 		lineageTag: 5650f6af-b84e-45d8-b2b8-e13540f1b1c9
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'me temp tank2' = CALCULATE(AVERAGE(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM2_TMP_SCALE1")
+	measure 'me temp tank2' = CALCULATE(SUM(fact_append_data_15min[Value]), fact_append_data_15min[Attribute] = "SPS_01_VCN_siFM2_TMP_SCALE1")
 		lineageTag: 0137c16b-bfd1-4113-a761-516f436d3ac3
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
