@@ -1,0 +1,8 @@
+table @Measures
+	lineageTag: 96092219-3d52-4676-a20e-b9304f758746
+
+	measure Measure = "Create your measures here"
+		displayFolder: Folder 1
+		lineageTag: 8b2f3d1f-b5e1-4d88-9404-1576a43af69c
+
+	
