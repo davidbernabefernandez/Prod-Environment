@@ -5,6 +5,10 @@ table Table
 		formatString: 0
 		lineageTag: fcafa230-f810-4f8b-bd8b-497721711bea
 
+	measure 'test 2' = BLANK()
+		formatString: 0
+		lineageTag: 8b66cf56-0681-4038-b3ca-17934ca09219
+
 	column Column1
 		dataType: string
 		lineageTag: 588b5851-1b12-4812-bbf0-06c9d3e7b04f
