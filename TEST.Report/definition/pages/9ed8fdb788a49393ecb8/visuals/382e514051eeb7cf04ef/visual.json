@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "382e514051eeb7cf04ef",
+  "position": {
+    "x": 179.95910020449898,
+    "y": 132.84253578732105,
+    "z": 0,
+    "height": 279.42740286298567,
+    "width": 450.22494887525562,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table"
+                    }
+                  },
+                  "Property": "Measure"
+                }
+              },
+              "queryRef": "Table.Measure",
+              "nativeQueryRef": "Measure"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Table"
+                  }
+                },
+                "Property": "Measure"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
