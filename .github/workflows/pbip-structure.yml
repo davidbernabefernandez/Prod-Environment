@@ -1,12 +1,12 @@
 # Workflow name.
-# This is the name that will appear in GitHub Actions and in the Pull Request checks.
+# This is the name shown in the Pull Request checks and in the Actions tab.
 name: Validate PBIP structure
 
-# Defines when this workflow should run.
-# pull_request means:
+# Trigger definition.
+# This workflow runs on every Pull Request event:
 # - when a PR is created
-# - when a PR is updated (new commits)
-# - when a PR is reopened
+# - when commits are pushed to the PR
+# - when the PR is reopened
 on:
   pull_request:
 
@@ -14,71 +14,104 @@ on:
 jobs:
 
   # Job name (arbitrary, you choose it)
-  pbip-structure:
+  pbip-validation:
 
-    # Specifies the type of runner (virtual machine) to use.
-    # ubuntu-latest means a Linux (Ubuntu) runner
+    # Specifies the GitHub runner to use.
+    # ubuntu-latest = Linux (Ubuntu) virtual machine
     runs-on: ubuntu-latest
 
-    # List of steps executed sequentially
+    # Steps executed sequentially inside the job
     steps:
 
-      # Step 1: Checkout the repository code into the runner
-      # Without this step, the workflow would not have access to the repo files
+      # Step 1: Checkout the repository content
+      # This downloads the repo files into the runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Validate PBIP folder structure
-      - name: Validate PBIP structure
+      # Step 2: Validate PBIP files and their related folders
+      - name: Validate PBIP files and related folders
         run: |
           # Print an informational message (visible in logs)
-          echo "🔍 Searching for PBIP folders..."
+          echo "🔍 Searching for PBIP files..."
 
-          # Recursively search for directories ending with .pbip
-          # find .            -> search from the repository root
-          # -name "*.pbip"    -> match directories named *.pbip
-          # -type d           -> only directories
-          # Store the result in the variable "pbips"
-          pbips=$(find . -name "*.pbip" -type d)
+          # Find all .pbip files in the repository root
+          # -maxdepth 1 ensures we only check the root folder
+          # -type f ensures we only match files, not directories
+          pbips=$(find . -maxdepth 1 -name "*.pbip" -type f)
 
-          # Check if no PBIP folders were found
-          # -z checks if the string is empty
+          # RULE 1:
+          # At least one .pbip file must exist in the repository
           if [ -z "$pbips" ]; then
-            # Emit a warning annotation visible directly in the Pull Request
-            # This does NOT fail the workflow
-            echo "::warning::No PBIP folders found in the repository"
+            echo "::error::No .pbip files found in the repository"
+            exit 1
           fi
 
-          # Loop through each PBIP directory found
+          # RULE 2:
+          # For each .pbip file, there must be at least ONE of:
+          # - a Report folder
+          # - a SemanticModel folder
           for pbip in $pbips; do
 
-            # Informational message showing which PBIP is being validated
-            echo "📦 Checking PBIP: $pbip"
+            # Extract the base name without the .pbip extension
+            base=$(basename "$pbip" .pbip)
 
-            # Check if the 'report' folder exists inside the PBIP directory
-            # -d checks for directory existence
-            # ! negates the condition (if directory does NOT exist)
-            if [ ! -d "$pbip/report" ]; then
-              # Emit an error annotation associated with the PBIP path
-              # This error will be visible in the Pull Request
-              echo "::error file=$pbip::Missing 'report' folder"
-              # Exit with non-zero code to fail the job and block the PR
+            # Build the expected folder names
+            report_dir="./$base.Report"
+            model_dir="./$base.SemanticModel"
+
+            # Informational message for logs
+            echo "📦 Validating PBIP: $base"
+
+            # If neither Report nor SemanticModel exists → error
+            if [ ! -d "$report_dir" ] && [ ! -d "$model_dir" ]; then
+              echo "::error file=$pbip::PBIP has no associated Report or SemanticModel folder"
               exit 1
             fi
 
-            # Check if the 'semanticModel' folder exists inside the PBIP directory
-            if [ ! -d "$pbip/semanticModel" ]; then
-              # Emit an error annotation visible in the Pull Request
-              echo "::error file=$pbip::Missing 'semanticModel' folder"
-              exit 1
+            # If a Report folder exists, emit a notice
+            if [ -d "$report_dir" ]; then
+              echo "::notice file=$report_dir::Report folder found"
             fi
 
-            # If all required folders exist, emit a notice annotation
-            # Notices are visible in the Pull Request but do not fail the workflow
-            echo "::notice file=$pbip::PBIP structure OK"
+            # If a SemanticModel folder exists, emit a notice
+            if [ -d "$model_dir" ]; then
+              echo "::notice file=$model_dir::SemanticModel folder found"
+            fi
 
-          # End of the loop
+          # End of PBIP loop
           done
 
-          # Final success message after all PBIP folders are validated
+          # RULE 3:
+          # Detect orphan Report folders (Report without matching .pbip)
+          for report in *.Report; do
+            # Skip loop if no Report folders exist
+            [ -e "$report" ] || continue
+
+            # Extract base name
+            base=$(basename "$report" .Report)
+
+            # If the corresponding .pbip file does not exist → error
+            if [ ! -f "./$base.pbip" ]; then
+              echo "::error file=$report::Report folder without matching .pbip file"
+              exit 1
+            fi
+          done
+
+          # RULE 3 (continued):
+          # Detect orphan SemanticModel folders (SemanticModel without matching .pbip)
+          for model in *.SemanticModel; do
+            # Skip loop if no SemanticModel folders exist
+            [ -e "$model" ] || continue
+
+            # Extract base name
+            base=$(basename "$model" .SemanticModel)
+
+            # If the corresponding .pbip file does not exist → error
+            if [ ! -f "./$base.pbip" ]; then
+              echo "::error file=$model::SemanticModel folder without matching .pbip file"
+              exit 1
+            fi
+          done
+
+          # Final success message visible in the Pull Request
           echo "::notice::PBIP structure validation completed successfully ✅"
