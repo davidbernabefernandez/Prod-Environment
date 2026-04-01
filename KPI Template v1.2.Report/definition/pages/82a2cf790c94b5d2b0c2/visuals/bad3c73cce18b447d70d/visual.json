@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "bad3c73cce18b447d70d",
+  "position": {
+    "x": 373.21813497942276,
+    "y": 1173.8826809609195,
+    "z": 13000,
+    "height": 32.5369656135907,
+    "width": 554.404374866869,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "In the future this Metadata will be read from the Insights Cockpit itself. For now, it's plain text",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#ff5d64"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

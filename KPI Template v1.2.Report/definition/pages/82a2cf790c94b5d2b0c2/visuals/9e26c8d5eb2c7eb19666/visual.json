@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "9e26c8d5eb2c7eb19666",
+  "position": {
+    "x": 182.46219932327335,
+    "y": 525.05730784284606,
+    "z": 10000,
+    "height": 35.088884485244876,
+    "width": 243.07027252505995,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Be consistent with the decimals shown!",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#ff5d64"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

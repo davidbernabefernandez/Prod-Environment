@@ -1,0 +1,711 @@
+table Calendar
+	lineageTag: 1c105a5e-5497-4921-b97b-3520f15c75f4
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 66a01e8d-5324-4711-9ba2-d39552f7b0fa
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e113d72-616f-4f44-92da-eb6a3bff0a2f
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Text'
+		dataType: string
+		lineageTag: f45c32e0-206f-4651-979f-e3c15df0dd5c
+		summarizeBy: none
+		sourceColumn: Year Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Of Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f437cdf-1a39-41e9-a824-1a3a0413a657
+		summarizeBy: none
+		sourceColumn: Start Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Of Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 17c9f1b0-6b63-48ea-a239-f9c059370d1c
+		summarizeBy: none
+		sourceColumn: End Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cc73552-9ab8-45ee-8aff-c30a3be7d1b8
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Text'
+		dataType: string
+		lineageTag: 0401c7c2-efc0-4026-841c-c3b16f5e4658
+		summarizeBy: none
+		sourceColumn: Quarter Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Of Quarter'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 41d201d0-d4a5-4ebc-aa31-70fab45d1b43
+		summarizeBy: none
+		sourceColumn: Start Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Of Quarter'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d97aa5e2-27c3-4781-af4f-9cac6687159e
+		summarizeBy: none
+		sourceColumn: End Of Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bddda03-6a87-411f-95d3-20f6a998646f
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: f439d622-722b-4608-97b9-00611bd13bea
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Short Name'
+		dataType: string
+		lineageTag: 29b61166-f58f-47ae-808e-0c1e6206c7cd
+		summarizeBy: none
+		sourceColumn: Month Short Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days In Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a07e2b-b18b-419f-9868-c41470463658
+		summarizeBy: sum
+		sourceColumn: Days In Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0d2330f7-2119-4b44-8509-c6e3b9b72fce
+		summarizeBy: none
+		sourceColumn: Start Of Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2719f581-a3ce-4edc-a654-65ea9ee6ead0
+		summarizeBy: none
+		sourceColumn: End Of Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Week Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bef0df8-848d-46ef-b270-dad6c8df0722
+		summarizeBy: sum
+		sourceColumn: Week Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ISO Week Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: b415206b-82f7-4084-bc20-89d205d736f2
+		summarizeBy: sum
+		sourceColumn: ISO Week Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year ISO Week'
+		dataType: string
+		lineageTag: b85cf6d6-ceec-4fa7-af99-7039df2276c0
+		summarizeBy: none
+		sourceColumn: Year ISO Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ISO Week Text'
+		dataType: string
+		lineageTag: bb59ac3a-560d-46b1-bc7b-689dbb5813b1
+		summarizeBy: none
+		sourceColumn: ISO Week Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Of Month'
+		dataType: int64
+		formatString: 0
+		lineageTag: c2d20e18-b54b-4bf5-a73a-7d055edd804c
+		summarizeBy: sum
+		sourceColumn: Week Of Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Of Week'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1d69787f-a2d5-4dd5-8c54-57ecd1d71183
+		summarizeBy: none
+		sourceColumn: Start Of Week
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Of Week'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 34f24577-0fe5-4a26-a115-d67dda171f74
+		summarizeBy: none
+		sourceColumn: End Of Week
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Day Of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: acbe702d-8825-40f1-ae41-56296635822a
+		summarizeBy: sum
+		sourceColumn: Day Of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: ee399e26-1467-42e6-a449-74211d591c97
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Of Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 32c5696d-e5b7-4849-aade-c292a8eea533
+		summarizeBy: sum
+		sourceColumn: Day Of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: da57415d-cb2c-45b1-a98d-7e420250a79f
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Quarter'
+		dataType: string
+		lineageTag: 2dfa65db-edf1-4064-b41b-4c0813eae86b
+		summarizeBy: none
+		sourceColumn: Year Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Quarter Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e9b1126-b71c-425f-b7df-ba95925872d0
+		summarizeBy: sum
+		sourceColumn: Year Quarter Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 494b5392-f2f5-482d-a27e-e069d14c7923
+		summarizeBy: none
+		sourceColumn: Year Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Name'
+		dataType: string
+		lineageTag: 6f5bcf80-e342-41b3-91b5-93f3ed51f5ef
+		summarizeBy: none
+		sourceColumn: Year Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Year'
+		dataType: string
+		lineageTag: 1b4b313e-eb42-4ab4-bc66-61e62fc47a5d
+		summarizeBy: none
+		sourceColumn: Month Name Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fa6669f-a65e-42d8-a890-aee18b40f16a
+		summarizeBy: sum
+		sourceColumn: Year Month Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Week'
+		dataType: string
+		lineageTag: c74960ee-44ef-4d22-8c80-81abb4b19ea0
+		summarizeBy: none
+		sourceColumn: Year Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Week Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 03d2a3ea-bd56-4c47-9721-6b2dd96f6935
+		summarizeBy: sum
+		sourceColumn: Year Week Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Day Flag'
+		dataType: string
+		lineageTag: d469d109-a577-45e5-826e-954b5799b876
+		summarizeBy: none
+		sourceColumn: Current Day Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Week Flag'
+		dataType: string
+		lineageTag: eafbcdfe-01ee-4b8f-8bd4-da4be43a8436
+		summarizeBy: none
+		sourceColumn: Current Week Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Month Flag'
+		dataType: string
+		lineageTag: d3c1c527-5aef-4a43-a87c-f99550ebf6f6
+		summarizeBy: none
+		sourceColumn: Current Month Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year Flag'
+		dataType: string
+		lineageTag: 9f642169-6b7b-46c7-a280-4d2c509f8554
+		summarizeBy: none
+		sourceColumn: Current Year Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Day Flag'
+		dataType: string
+		lineageTag: d906e5ab-5b5c-4119-b657-bf5b0c34b24a
+		summarizeBy: none
+		sourceColumn: Previous Day Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Week Flag'
+		dataType: string
+		lineageTag: 9f3355c7-34dc-4568-8558-e9909166527c
+		summarizeBy: none
+		sourceColumn: Previous Week Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Month Flag'
+		dataType: string
+		lineageTag: 0041eff7-2c3f-48ee-8f80-b5d153aed42e
+		summarizeBy: none
+		sourceColumn: Previous Month Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Year Flag'
+		dataType: string
+		lineageTag: 2462e30f-f4a6-42e4-90cc-7abe932512d9
+		summarizeBy: none
+		sourceColumn: Previous Year Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Current Day Flag'
+		dataType: string
+		lineageTag: d121c502-5ad3-42db-92ce-ca48ffaa262a
+		summarizeBy: none
+		sourceColumn: Until Current Day Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Current Week Flag'
+		dataType: string
+		lineageTag: 81638515-b99a-4adb-8c4a-d2c92f057b9c
+		summarizeBy: none
+		sourceColumn: Until Current Week Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Current Month Flag'
+		dataType: string
+		lineageTag: a57b947d-4f43-476a-8601-3c07017fd9f5
+		summarizeBy: none
+		sourceColumn: Until Current Month Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Current Year Flag'
+		dataType: string
+		lineageTag: b7e94e5c-4a9d-422c-92a2-3db439b64c75
+		summarizeBy: none
+		sourceColumn: Until Current Year Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Previous Day Flag'
+		dataType: string
+		lineageTag: a525bf92-ab42-4501-9606-0bbefdd4fd25
+		summarizeBy: none
+		sourceColumn: Until Previous Day Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Previous Week Flag'
+		dataType: string
+		lineageTag: ce62ae02-34ae-4dac-a3c5-5e0398d50613
+		summarizeBy: none
+		sourceColumn: Until Previous Week Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Previous Month Flag'
+		dataType: string
+		lineageTag: cc53e09e-a12c-4c76-92f1-a6c6a081604d
+		summarizeBy: none
+		sourceColumn: Until Previous Month Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Until Previous Year Flag'
+		dataType: string
+		lineageTag: d98eb215-4fad-475b-8175-97516a6b7053
+		summarizeBy: none
+		sourceColumn: Until Previous Year Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Year Text'
+		dataType: string
+		lineageTag: 3a25bd0c-24c5-43bc-917a-0064302f9c7a
+		summarizeBy: none
+		sourceColumn: Week Year Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Short Name Year'
+		dataType: string
+		lineageTag: 3bb20e53-d10f-4148-9079-e13c4efb9adf
+		summarizeBy: none
+		sourceColumn: Month Short Name Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 17424d3d-aa58-4bd6-b5b5-e7ffe0c7e3de
+		summarizeBy: sum
+		sourceColumn: Business Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Quarter'
+		dataType: string
+		lineageTag: a9fe99ee-3876-442e-8e6c-c9ce9d90a37f
+		summarizeBy: none
+		sourceColumn: Business Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: e312660e-54c4-4767-85e6-064333ccf7da
+		summarizeBy: sum
+		sourceColumn: Business Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Month Name'
+		dataType: string
+		lineageTag: a22f00ce-a1f0-4d43-b737-8b30c4e49b63
+		summarizeBy: none
+		sourceColumn: Business Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Month DE'
+		dataType: string
+		lineageTag: 2f25984d-64e3-4968-9a35-3de15c43a475
+		summarizeBy: none
+		sourceColumn: Business Month DE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Month DE Year'
+		dataType: string
+		lineageTag: 8221f1e2-3db3-4efa-a159-a320985e8ba0
+		summarizeBy: none
+		sourceColumn: Business Month DE Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Year YY/YY'
+		dataType: string
+		lineageTag: 79b8571f-e373-419c-a04d-3946ec69e237
+		summarizeBy: none
+		sourceColumn: Business Year YY/YY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Month DE Year YY/YY'
+		dataType: string
+		lineageTag: a75dbb75-1d15-492a-8b96-852a72c0c548
+		summarizeBy: none
+		sourceColumn: Business Month DE Year YY/YY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5eda71a1-133f-4dd3-b511-f298ddb29262
+		summarizeBy: none
+		sourceColumn: Previous Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Previous Business Year YY/YY'
+		dataType: string
+		lineageTag: f4c5a8dd-4aed-4f42-a096-48ff6444331f
+		summarizeBy: none
+		sourceColumn: Previous Business Year YY/YY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Business Month DE + Year YY/YY'
+		dataType: string
+		lineageTag: 3a13bc20-6a50-42a3-95c4-652b5bdbf37a
+		summarizeBy: none
+		sourceColumn: Previous Business Month DE + Year YY/YY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Year Month Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 76efe4a7-33a0-488d-a573-2f588e48ef2f
+		summarizeBy: sum
+		sourceColumn: Previous Year Month Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Year Month Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1111141e-ba77-42dd-a621-49999fb5a111
+		summarizeBy: sum
+		sourceColumn: Business Year Month Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Business Year Month'
+		dataType: string
+		lineageTag: 608190b6-26ae-4d60-ab3d-c71943ac943c
+		summarizeBy: none
+		sourceColumn: Previous Business Year Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Previous Month Short Name Year'
+		dataType: string
+		lineageTag: b41caebc-fbea-4cd5-8ad3-865dd648e124
+		summarizeBy: none
+		sourceColumn: Previous Month Short Name Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Week Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 257855eb-71d5-4976-9063-917865c08175
+		summarizeBy: sum
+		sourceColumn: Business Week Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Week Year Text'
+		dataType: string
+		lineageTag: c8e350ef-ccd3-44c3-89d9-adf15f39b050
+		summarizeBy: none
+		sourceColumn: Business Week Year Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Int'
+		dataType: int64
+		formatString: 0
+		lineageTag: 06265a7d-0aa0-4d3a-9e6e-8bf3285f47b7
+		summarizeBy: sum
+		sourceColumn: Date Int
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Quarter Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 868b4135-1022-41e1-b95c-098fbe7cbd00
+		summarizeBy: sum
+		sourceColumn: Business Quarter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Business Year Flag'
+		dataType: string
+		lineageTag: c3082f8e-978b-4c13-85c7-0b625fd06824
+		summarizeBy: none
+		sourceColumn: Current Business Year Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name Short'
+		dataType: string
+		lineageTag: 2e1abf11-ea73-461d-bf34-62ae405b82d8
+		summarizeBy: none
+		sourceColumn: Day Name Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Of Week 1-7'
+		dataType: int64
+		formatString: 0
+		lineageTag: a8a672c2-e970-4aa6-8fb1-22075a805080
+		summarizeBy: sum
+		sourceColumn: Day Of Week 1-7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		dataType: string
+		lineageTag: 4fc56d35-4cd0-4606-a39e-b723e84a63a6
+		summarizeBy: none
+		sourceColumn: Is Weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month No MM'
+		dataType: string
+		lineageTag: 79c96aa7-52e0-4f08-8e8f-49e8d39b1872
+		summarizeBy: none
+		sourceColumn: Month No MM
+
+		annotation SummarizationSetBy = Automatic
+
+	column YYYY-MM-DD
+		dataType: string
+		lineageTag: ca12a2ab-8451-4cb2-bb0b-422e6a7d62ea
+		summarizeBy: none
+		sourceColumn: YYYY-MM-DD
+
+		annotation SummarizationSetBy = Automatic
+
+	column DD-MM-YYYY
+		dataType: string
+		lineageTag: 3ae34d91-9a80-4059-aed7-725ed063d030
+		summarizeBy: none
+		sourceColumn: DD-MM-YYYY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    // Connect to Databricks source
+				    Source = Databricks.Catalogs("adb-6136409691618522.2.azuredatabricks.net", "/sql/1.0/warehouses/f8b9c3ff19c098c8", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null]),
+				
+				    // Load the calendar_farcaster table
+				    calendar_farcaster = Source{[Name="ax_prod_gold",Kind="Database"]}[Data]
+				                             {[Name="reference_calendar_mta",Kind="Schema"]}[Data]
+				                             {[Name="calendar_mta",Kind="Table"]}[Data],
+				
+				    // Load the metadata table (calendar_column_mapping)
+				    calendar_column_mapping = Source{[Name="ax_dev_gold",Kind="Database"]}[Data]
+				                                {[Name="reference_calendar_mta",Kind="Schema"]}[Data]
+				                                {[Name="calendar_mta_colname_mapping",Kind="Table"]}[Data],
+				
+				    // Create the rename-list from the metadata table
+				    RenameList = Table.ToRows(
+				                    Table.SelectColumns(
+				                        calendar_column_mapping, {"technical_name", "alias_en"}
+				                    )
+				                 ),
+				
+				    // Dynamically rename columns based on metadata
+				    RenamedColumns = Table.RenameColumns(calendar_farcaster, RenameList, MissingField.Ignore)
+				in
+				    RenamedColumns
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

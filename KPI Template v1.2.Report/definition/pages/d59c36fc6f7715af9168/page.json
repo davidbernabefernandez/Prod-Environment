@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d59c36fc6f7715af9168",
+  "displayName": "KPI Layout Adjustment Guide",
+  "displayOption": "FitToWidth",
+  "height": 2900,
+  "width": 1280,
+  "visibility": "HiddenInViewMode"
+}

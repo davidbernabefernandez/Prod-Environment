@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "57ba9ff6a7c245dbe53d",
+  "position": {
+    "x": 687.74213591079956,
+    "y": 510.38377433083451,
+    "z": 11000,
+    "height": 32.5369656135907,
+    "width": 459.98337661566461,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "It's better if the Definition is concise enough that no scrolling is needed",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#ff5d64"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

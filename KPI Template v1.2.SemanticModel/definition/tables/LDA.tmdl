@@ -1,0 +1,31 @@
+table LDA
+	lineageTag: ed893c9a-36d7-4ad4-af62-cb9fe6d59589
+
+	column report_id
+		lineageTag: 355f17b8-90b2-4e18-82a7-af944a347057
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [report_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LDA
+		formatString: General Date
+		lineageTag: 1f70da99-9f71-4588-b540-e67f8fcc4f10
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LDA]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LDA = calculated
+		mode: import
+		source = ```
+				
+				// This table should contain the last data available in the fact table. This data will be queried by 
+				//In the report Id put the value of the reportid from the Power BI Service.
+				ROW("report_id", "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","LDA", MAX('Dummy Fact Table'[Date]))
+				```
+
+	annotation PBI_Id = 13f275434ec643eba31fdecc51deb041
+

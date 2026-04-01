@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "d650600c52036ca185b7",
+  "position": {
+    "x": 116.7335528513009,
+    "y": 262.45975281599681,
+    "z": 1000,
+    "height": 143.43730677153312,
+    "width": 346.38583656529806,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Codes for copying:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Actual #FF5D64"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Forecast #F89AA6"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Primary Comparison #A2A2E7"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Secondary Comparison #D8D8D8"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Negative Deviation #FFCDCF"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Positive Deviation #E6F3E6"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
