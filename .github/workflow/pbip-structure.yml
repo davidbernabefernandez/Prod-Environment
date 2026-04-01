@@ -1,0 +1,21 @@
+name: Validate PBIP structure
+
+on:
+  pull_request:
+
+jobs:
+  pbip-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check PBIP folders
+        run: |
+          pbips=$(find . -name "*.pbip" -type d)
+
+          for pbip in $pbips; do
+            if [ ! -d "$pbip/report" ] || [ ! -d "$pbip/semanticModel" ]; then
+              echo "❌ Invalid PBIP structure in $pbip"
+              exit 1
+            fi
+          done
