@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "b4fb5ed952fc3469318c",
+  "position": {
+    "x": 270.50340039534228,
+    "y": 14.03555379409795,
+    "z": 7000,
+    "height": 35.088884485244876,
+    "width": 408.94499918258117,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Duplicate the slicer as needed for extra fields. Mind the header text!",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#ff5d64"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

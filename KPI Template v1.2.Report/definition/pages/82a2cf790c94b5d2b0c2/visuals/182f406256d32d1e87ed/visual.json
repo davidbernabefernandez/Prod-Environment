@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "182f406256d32d1e87ed",
+  "position": {
+    "x": 519.95347009953764,
+    "y": 75.2816067137981,
+    "z": 9000,
+    "height": 32.5369656135907,
+    "width": 319.62783867468511,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Explanatory text like this is not part of the template!",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#ff5d64"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

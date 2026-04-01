@@ -1,0 +1,137 @@
+table 'Refresh Time'
+	lineageTag: 41ab360c-495d-4f96-9331-102ba35085a9
+
+	column 'UTC Zone'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4e2b8f52-555c-4324-a826-a6e40d559c51
+		summarizeBy: none
+		sourceColumn: UTC Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CET/CEST Zone'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 15625c6b-ba01-4aaf-937f-9c2a80095edd
+		summarizeBy: none
+		sourceColumn: CET/CEST Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CET/CEST Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f85fd41b-c06d-4756-9cdf-50b1552cec71
+		summarizeBy: none
+		sourceColumn: CET/CEST Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'CET/CEST Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: e61166cb-266b-4fe8-9143-1d214fc567ab
+		summarizeBy: none
+		sourceColumn: CET/CEST Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column CET/CEST
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2f0da6b-02f2-4ee5-a7c4-ecd4d7051498
+		summarizeBy: none
+		sourceColumn: CET/CEST
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UTC Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96d98424-37d2-4284-b37a-68642766b876
+		summarizeBy: none
+		sourceColumn: UTC Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'UTC Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 821ee295-23c1-4103-8012-28359d92b1c4
+		summarizeBy: none
+		sourceColumn: UTC Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bba46d01-62b1-412a-ad6c-b09772ba1f9a
+		summarizeBy: none
+		sourceColumn: UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Refresh Time' = m
+		mode: import
+		source = ```
+				let
+				 
+				    Source = DateTime.LocalNow(),
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"Column1", type datetimezone}}),
+				    // Detect CET or CEST
+				    #"Added Custom" = Table.AddColumn( #"Changed Type", "CET/CEST",
+				        each
+				            let
+				                dtUTC = DateTimeZone.RemoveZone([Column1]),   // remove zone → UTC pure
+				                year = Date.Year(dtUTC),
+				 
+				                // last sunday on march, 02:00 → beginning CEST
+				                dstStart = Date.StartOfWeek(#datetime(year, 3, 31, 2, 0, 0), Day.Sunday),
+				                // last sunday on october, 03:00 → finsh CEST
+				                dstEnd   = Date.StartOfWeek(#datetime(year, 10, 31, 3, 0, 0), Day.Sunday),
+				                offset = if dtUTC >= dstStart and dtUTC < dstEnd then 2 else 1
+				 
+				            in
+				 
+				                DateTimeZone.SwitchZone([Column1], offset)
+				    ),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Column1", "UTC"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"CET/CEST", type datetimezone}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type1", "CET/CEST", "CET/CEST - Copy"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column",{{"CET/CEST - Copy", "CET/CEST Date"}}),
+				    #"Extracted Date" = Table.TransformColumns(#"Renamed Columns1",{{"CET/CEST Date", DateTime.Date, type date}}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Extracted Date", "CET/CEST", "CET/CEST - Copy"),
+				    #"Extracted Time" = Table.TransformColumns(#"Duplicated Column1",{{"CET/CEST - Copy", DateTime.Time, type time}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Extracted Time",{{"CET/CEST - Copy", "CET/CEST Time"}}),
+				    #"Duplicated Column2" = Table.DuplicateColumn(#"Renamed Columns2", "CET/CEST", "CET/CEST - Copy"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Duplicated Column2",{{"CET/CEST - Copy", type datetime}}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Changed Type2",{{"CET/CEST", "CET/CEST Zone"}, {"CET/CEST - Copy", "CET/CEST"}}),
+				    #"Duplicated Column3" = Table.DuplicateColumn(#"Renamed Columns3", "UTC", "UTC - Copy"),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Duplicated Column3",{{"UTC - Copy", type date}}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Changed Type3",{{"UTC - Copy", "UTC Date"}, {"UTC", "UTC Zone"}}),
+				    #"Duplicated Column4" = Table.DuplicateColumn(#"Renamed Columns4", "UTC Zone", "UTC Zone - Copy"),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Duplicated Column4",{{"UTC Zone - Copy", "UTC Time"}}),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Renamed Columns5",{{"UTC Time", type time}}),
+				    #"Duplicated Column5" = Table.DuplicateColumn(#"Changed Type4", "UTC Zone", "UTC Zone - Copy"),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Duplicated Column5",{{"UTC Zone - Copy", "UTC"}}),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Renamed Columns6",{{"UTC", type datetime}})
+				 
+				in
+				    #"Changed Type5"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

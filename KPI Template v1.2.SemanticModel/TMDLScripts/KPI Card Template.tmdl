@@ -1,0 +1,164 @@
+createOrReplace
+
+	table 'Dummy Fact Table'
+		lineageTag: e8237415-6e7c-4ab9-9cb1-3e70eb20012f
+
+		measure 'KPI Card - Example Chart Title' = ```
+				
+				"Example of a 
+				Card Title"
+				--If you need to use 2 lines, you can follow the format above -- otherwise we don't need a measure
+				```
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 11826e8a-77b4-4654-a173-dce22967e69a
+
+		measure 'KPI Card - Example Measure (Text Arrow Card)' = ```
+				
+				 
+				var measure_evaluated = [KPI Card - Example Measure vs Target]
+				// var measure_evaluated_text = [LCR (Text)]
+				
+				VAR measure_evaluated_text = CONCATENATE(
+				    CONCATENATE(
+				        CONCATENATE( FORMAT([KPI Card - Example Measure vs Target], "0"), " ("), -- we use pp because we are comparing percentages. The format varies
+				        FORMAT([KPI Card - Example Measure vs Target (%)], "0%")
+				    ),
+				    ")"
+				)
+				 
+				RETURN
+				SWITCH(
+				    TRUE()
+				    ,measure_evaluated > 0, "▲ "&measure_evaluated_text --this changes if increase is bad, depends on the comparison
+				    ,measure_evaluated < 0, "▼ "&measure_evaluated_text -- the colors would also invert if that's the case
+				    ,measure_evaluated = 0, measure_evaluated_text
+				) &" vs Target" -- this will depend on the comparison
+				```
+			displayFolder: 01. KPI Card Measures
+			lineageTag: cb1917b8-7187-491c-89c8-33bb264b5b8c
+
+		measure 'KPI Card - Example Measure AC' = SUM('Dummy Fact Table'[example_value])
+			formatString: #,0.00%;-#,0.00%;#,0.00%
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 0455da4c-e0ca-4d2d-93f1-6bc152f608c8
+
+		measure 'KPI Card - Example Measure AC Date (Last Date Available)' = MAX('Dummy Fact Table'[Date])
+			formatString: General Date
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 99858d9d-1d18-4bbe-8217-b5f7725b12ec
+
+		measure 'KPI Card - Example Measure AC Value (Last Date Available)' = CALCULATE(SUM('Dummy Fact Table'[example_value]), LASTDATE('Dummy Fact Table'[Date]))
+			formatString: 0\ %;-0\ %;0\ %
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 25825004-7841-46a2-9784-f7e027e65e21
+
+		measure 'KPI Card - Example Measure FC' =
+				
+				--- This is just made up for the sake of the visual
+				IF(ISBLANK([KPI Card - Example Measure AC]),BLANK(),[KPI Card - Example Measure AC] - 0.5)
+			formatString: 0%;-0%;0%
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 6e7eff0a-049a-4512-8b64-fd12c99ec869
+
+		measure 'KPI Card - Example Measure vs Target' = ([KPI Card - Example Measure AC Value (Last Date Available)] - [KPI Card - Target 1 (100%)])*100
+			formatString: 0
+			displayFolder: 01. KPI Card Measures
+			lineageTag: daefc6f8-eae0-467a-a3fb-cff03f12ccb6
+
+		measure 'KPI Card - Example Measure vs Target (%)' = ```
+				
+				 DIVIDE(
+				    [KPI Card - Example Measure AC Value (Last Date Available)],
+				    [KPI Card - Target 1 (100%)]
+				 ) - 1
+				```
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 05d23a81-e73c-4dab-85ee-5616a188f04d
+
+		measure 'KPI Card - Target 1 (100%)' = ```
+				1 --Target has been defined as 100% 
+				--We can add it as it is, or as a new Measure if we want it to appear in the legend instead of with a label.
+				```
+			formatString: 0%;-0%;0%
+			displayFolder: 01. KPI Card Measures
+			lineageTag: 6ac80e99-54d1-4d56-a74a-93c3c52bcaf7
+
+		measure 'KPI Card - Target 2 (150%)' = 1.5 --Target has been defined as 150%
+			formatString: 0%;-0%;0%
+			displayFolder: 01. KPI Card Measures
+			lineageTag: e215c6e0-d0a9-4caa-a5ff-5ee8e817f625
+
+		column Date
+			dataType: dateTime
+			formatString: Short Date
+			lineageTag: 25e0f980-eb67-425d-87e3-e68425aa2b6e
+			summarizeBy: none
+			sourceColumn: Date
+
+			annotation SummarizationSetBy = Automatic
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column Organization
+			dataType: string
+			lineageTag: 542703be-bb5b-4ab6-bdaf-67f284c2d43f
+			summarizeBy: none
+			sourceColumn: Organization
+
+			annotation SummarizationSetBy = Automatic
+
+		column example_value
+			dataType: double
+			lineageTag: 07a8f6c3-c001-403e-89ea-86d1dd2ea4e5
+			summarizeBy: sum
+			sourceColumn: example_value
+
+			annotation SummarizationSetBy = Automatic
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		partition 'Dummy Fact Table' = m
+			mode: import
+			source =
+					let
+					    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("fZNNb4MwDIb/CuJcRbHzQThWmnZA6nbYseqBomib1BbEYFr//UYTSGINThzeR7bjxxyPuYDsUPfNR4YcMd/lnCkxffc/XZufdn8Az6rxZkOu0ZD8zXaDvZ5tHyCZIJC9NkObAFoIUuWl/U6KAAOlSJkn25BGyhjCVPVtrPv7hIgHUurkQWiyZ3vuYwaY4JqUWbbiAQNk3n3Xf14CoIEOe6ijBiXqla1OOTJBN1aNl3sUlyTej+/j1xAAJTatOEgDrntxSKG2vHimgA0vvpWkE0de5AORJnkzlokXxxRQEneLF+n70L0uXuYuxf9eXGwU9Tp78bmhhzGLcXmp6S6CmYkQDPSmGV+G0zOOzLg6QtJJYzOOMXzLjGeQHmpkZookQxD5+h+jXBmgEy9mHKBg1YwDtKLDejO+Aa6Z8UPycD6nXw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Date = _t, example_value = _t, Organization = _t]),
+					    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Date", type date},{"example_value", type number}})
+					in
+					    #"Changed Type"
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Table
+
+	table LDA
+		lineageTag: ed893c9a-36d7-4ad4-af62-cb9fe6d59589
+
+		column report_id
+			lineageTag: 355f17b8-90b2-4e18-82a7-af944a347057
+			summarizeBy: none
+			isNameInferred
+			sourceColumn: [report_id]
+
+			annotation SummarizationSetBy = Automatic
+
+		column LDA
+			formatString: General Date
+			lineageTag: 1f70da99-9f71-4588-b540-e67f8fcc4f10
+			summarizeBy: none
+			isNameInferred
+			sourceColumn: [LDA]
+
+			annotation SummarizationSetBy = Automatic
+
+		partition LDA = calculated
+			mode: import
+			source = ```
+					
+					// This table should contain the last data available in the fact table. This data will be queried by 
+					//In the report Id put the value of the reportid from the Power BI Service.
+					ROW("report_id", "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","LDA", MAX('Dummy Fact Table'[Date]))
+					```
+
+		annotation PBI_Id = 13f275434ec643eba31fdecc51deb041
+

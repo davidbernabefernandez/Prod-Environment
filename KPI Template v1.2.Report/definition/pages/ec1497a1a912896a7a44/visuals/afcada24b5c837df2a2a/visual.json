@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "afcada24b5c837df2a2a",
+  "position": {
+    "x": 695.060566323759,
+    "y": 262.45975281599681,
+    "z": 3000,
+    "height": 151.82991514646326,
+    "width": 346.38583656529806,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Comparison Card Colors (the one with the arrow)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Text: #6B272A for red, #004900 for green, #666666 for grey."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "-Background: #FFCDCF for red, #E6F3E6 for green, #E6E6E6 for grey."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

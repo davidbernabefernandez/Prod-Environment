@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "c89dd45f54bba96d5ee4",
+  "displayName": "Empty KPI Card Design",
+  "displayOption": "FitToWidth",
+  "height": 1500,
+  "width": 1280
+}
