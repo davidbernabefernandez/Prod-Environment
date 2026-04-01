@@ -1,21 +1,84 @@
+# Workflow name.
+# This is the name that will appear in GitHub Actions and in the Pull Request checks.
 name: Validate PBIP structure
 
+# Defines when this workflow should run.
+# pull_request means:
+# - when a PR is created
+# - when a PR is updated (new commits)
+# - when a PR is reopened
 on:
   pull_request:
 
+# Definition of the jobs in this workflow
 jobs:
-  pbip-structure:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Check PBIP folders
+  # Job name (arbitrary, you choose it)
+  pbip-structure:
+
+    # Specifies the type of runner (virtual machine) to use.
+    # ubuntu-latest means a Linux (Ubuntu) runner
+    runs-on: ubuntu-latest
+
+    # List of steps executed sequentially
+    steps:
+
+      # Step 1: Checkout the repository code into the runner
+      # Without this step, the workflow would not have access to the repo files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Validate PBIP folder structure
+      - name: Validate PBIP structure
         run: |
+          # Print an informational message (visible in logs)
+          echo "🔍 Searching for PBIP folders..."
+
+          # Recursively search for directories ending with .pbip
+          # find .            -> search from the repository root
+          # -name "*.pbip"    -> match directories named *.pbip
+          # -type d           -> only directories
+          # Store the result in the variable "pbips"
           pbips=$(find . -name "*.pbip" -type d)
 
+          # Check if no PBIP folders were found
+          # -z checks if the string is empty
+          if [ -z "$pbips" ]; then
+            # Emit a warning annotation visible directly in the Pull Request
+            # This does NOT fail the workflow
+            echo "::warning::No PBIP folders found in the repository"
+          fi
+
+          # Loop through each PBIP directory found
           for pbip in $pbips; do
-            if [ ! -d "$pbip/report" ] || [ ! -d "$pbip/semanticModel" ]; then
-              echo "❌ Invalid PBIP structure in $pbip"
+
+            # Informational message showing which PBIP is being validated
+            echo "📦 Checking PBIP: $pbip"
+
+            # Check if the 'report' folder exists inside the PBIP directory
+            # -d checks for directory existence
+            # ! negates the condition (if directory does NOT exist)
+            if [ ! -d "$pbip/report" ]; then
+              # Emit an error annotation associated with the PBIP path
+              # This error will be visible in the Pull Request
+              echo "::error file=$pbip::Missing 'report' folder"
+              # Exit with non-zero code to fail the job and block the PR
               exit 1
             fi
+
+            # Check if the 'semanticModel' folder exists inside the PBIP directory
+            if [ ! -d "$pbip/semanticModel" ]; then
+              # Emit an error annotation visible in the Pull Request
+              echo "::error file=$pbip::Missing 'semanticModel' folder"
+              exit 1
+            fi
+
+            # If all required folders exist, emit a notice annotation
+            # Notices are visible in the Pull Request but do not fail the workflow
+            echo "::notice file=$pbip::PBIP structure OK"
+
+          # End of the loop
           done
+
+          # Final success message after all PBIP folders are validated
+          echo "::notice::PBIP structure validation completed successfully ✅"
